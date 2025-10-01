@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Carousel</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #f4f4f4;
+      color: #0a0a0a;
+    }
+
+    .carousel-container {
+      position: relative;
+      overflow: hidden;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .carousel {
+      display: flex;
+      gap: 20px;
+      scroll-behavior: smooth;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+    }
+
+    .card {
+      position: relative;
+      flex: 0 0 auto;
+      width: 350px;
+      height: 350px;
+      border-radius: 1.25rem;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      cursor: pointer;
+      scroll-snap-align: start;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.015);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      border-radius: 1.25rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.6), rgba(0,0,0,0));
+      color: white;
+      padding: 1.5rem;
+      transition: backdrop-filter 0.3s ease;
+    }
+
+    .card:hover .card-overlay {
+      backdrop-filter: blur(4px);
+    }
+
+    .card-overlay span {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #c4b5fd; /* violet-300 */
+    }
+
+    .card-overlay h3 {
+      margin: 0.5rem 0;
+      font-size: 1.75rem;
+      font-weight: bold;
+    }
+
+    .card-overlay p {
+      font-size: 1rem;
+      color: #cbd5e1; /* slate-300 */
+    }
+
+    /* Scrollbar hide */
+    .carousel::-webkit-scrollbar {
+      display: none;
+    }
+    .carousel {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Arrows */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.2);
+      border: none;
+      font-size: 2rem;
+      color: white;
+      padding: 0.5rem 0.8rem;
+      cursor: pointer;
+      z-index: 10;
+      border-radius: 0.75rem;
+      backdrop-filter: blur(5px);
+      transition: padding 0.2s ease;
+    }
+
+    .arrow:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .arrow.left {
+      left: 0.5rem;
+    }
+    .arrow.right {
+      right: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="carousel-container">
+    <p class="mb-4" style="font-size:1.5rem; font-weight:600;">
+      Everything. <span style="color:#64748b;">Yes, even that.</span>
+    </p>
+    
+    <div class="carousel" id="carousel">
+      <div class="card" style="background-image:url('https://via.placeholder.com/350x350/000000/FFFFFF?text=Mouse');">
+        <div class="card-overlay">
+          <span>Mice</span>
+          <h3>Just feels right</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+      </div>
+      <div class="card" style="background-image:url('https://via.placeholder.com/350x350/333333/FFFFFF?text=Keyboard');">
+        <div class="card-overlay">
+          <span>Keyboards</span>
+          <h3>Type in style</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+      </div>
+      <div class="card" style="background-image:url('https://via.placeholder.com/350x350/555555/FFFFFF?text=Monitor');">
+        <div class="card-overlay">
+          <span>Monitors</span>
+          <h3>Looks like a win</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+      </div>
+      <div class="card" style="background-image:url('https://via.placeholder.com/350x350/777777/FFFFFF?text=Chair');">
+        <div class="card-overlay">
+          <span>Chairs</span>
+          <h3>Back feels great</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+      </div>
+      <div class="card" style="background-image:url('https://via.placeholder.com/350x350/999999/FFFFFF?text=Lights');">
+        <div class="card-overlay">
+          <span>Lights</span>
+          <h3>It’s lit</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Arrows (scroll control via JS) -->
+    <button class="arrow left" onclick="scrollCarousel(-1)">‹</button>
+    <button class="arrow right" onclick="scrollCarousel(1)">›</button>
+  </div>
+
+  <script>
+    const carousel = document.getElementById("carousel");
+    function scrollCarousel(dir) {
+      const cardWidth = 370; // width + margin
+      carousel.scrollBy({ left: dir * cardWidth, behavior: "smooth" });
+    }
+  </script>
+
+</body>
+</html>

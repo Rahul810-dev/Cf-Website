@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./events.css" />
+  </head>
+  <body>
+    <div class="px-4 pt-5 text-center border-bottom">
+      <h1 class="display-4 fw-bold text-body-emphasis">Our Community Events</h1>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">
+          Weekly meetups, monthly contests, seasonal challenges and more...
+        </p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+
+          <button class="animated-button">
+            <svg
+              viewBox="0 0 24 24"
+              class="arr-2"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+              ></path>
+            </svg>
+            <span class="text" onclick="window.location.href='./events.html'"
+              >View Meetups</span
+            >
+            <span class="circle"></span>
+            <svg
+              viewBox="0 0 24 24"
+              class="arr-1"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container col-xxl-8 px-4">
+      <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="px-4 pt-5 text-center">
+          <h1 class="display-5 fw-bold text-body-emphasis">Upcoming Event</h1>
+          <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">
+              From Monthly Events to seasonal blitz contest,we keep the coding
+              spirit on...
+            </p>
+          </div>
+        </div>
+        <div class="container my-5">
+          <div class="row gx-5 gy-3 d-flex align-items-stretch">
+            <div
+              class="col-lg-6 bg-primary text-light d-flex flex-column justify-content-center p-4"
+              style="border-radius: 15px"
+            >
+              <p class="mb-3">
+                Upcoming contest <br />
+                <span class="display-5">Summer Code Blitz 2025</span>
+              </p>
+              <p class="text-lead">October 23, 2025</p>
+
+              <div id="countdown" class="mb-3 fs-5 counter"></div>
+
+              <!-- From Uiverse.io by adamgiebl -->
+              <button
+                class="dot-expand-btn group flex h-10 items-center gap-2 rounded-full bg-neutral-200 pl-3 pr-4 transition-all duration-300 ease-in-out hover:bg-black hover:pl-2 hover:text-white active:bg-neutral-700"
+                style="width: 190px"
+              >
+                <span
+                  class="rounded-full bg-black p-1 text-sm transition-colors duration-300 group-hover:bg-white"
+                >
+                  <svg
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="-translate-x-[200%] text-[0px] transition-all duration-300 group-hover:translate-x-0 group-hover:text-lg group-hover:text-black group-active:-rotate-45"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </span>
+                <span>Register Now</span>
+              </button>
+            </div>
+
+            <div
+              class="col-lg-6 rounded-end overflow-hidden"
+              style="border-radius: 15px"
+            >
+              <img
+                src="https://picsum.photos/800/500?random=1"
+                alt="Placeholder Image"
+                class="img-fluid h-100 w-100 object-fit-cover crop-image"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./event.js"></script>
+  </body>
+</html>
