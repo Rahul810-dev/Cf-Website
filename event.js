@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 
 
-  const targetDate = new Date("October 23, 2025 00:00:00").getTime();
+  const targetDate = new Date("October 30, 2025 00:00:00").getTime();
 
   function updateCountdown() {
     const now = new Date().getTime();
@@ -139,5 +139,32 @@ $(document).ready(function() {
   updateCarousel();
 });
 
+
+  // Smooth fade-in on load
+  window.addEventListener("load", () => {
+    document.body.classList.add("page-loaded");
+
+    // Add soft glow shimmer overlay
+    const overlay = document.createElement("div");
+    overlay.classList.add("page-loader-overlay");
+    document.body.appendChild(overlay);
+    setTimeout(() => overlay.remove(), 1000);
+  });
+
+  // Smooth fade-out on page navigation
+  document.querySelectorAll("a").forEach((link) => {
+    if (link.hostname === window.location.hostname) {
+      link.addEventListener("click", function (e) {
+        const href = this.getAttribute("href");
+        if (!href || href.startsWith("#") || href.startsWith("javascript:")) return;
+
+        e.preventDefault();
+        document.body.classList.add("page-transition");
+        setTimeout(() => {
+          window.location.href = href;
+        }, 400);
+      });
+    }
+  });
 
 

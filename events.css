@@ -1,479 +1,781 @@
-  /* =========================
-    Dropdown (staggered open)
-    ========================= */
-  .dropdown-container {
-    position: relative;
-    display: inline-block;
-    margin: 1rem;
-  }
+.stagger-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.stagger-btn {
+  background-color: #111;
+  color: #ffb400;
+  border: 2px solid #ffb400;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.stagger-btn:hover {
+  background-color: #ffb400;
+  color: #000;
+}
+.stagger-menu {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  background: #111;
+  border: 1px solid #444;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+.stagger-dropdown.open .stagger-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.stagger-item {
+  padding: 10px 15px;
+  color: #ffb400;
+  cursor: pointer;
+}
+.stagger-item:hover {
+  background: #ffb400;
+  color: #000;
+}
 
-  /* Button */
-  .dropdown-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: #0d6efd;
-    color: #fff;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 6px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background 0.25s ease, transform 0.18s ease;
-  }
-  .dropdown-btn:hover { background: #4f46e5; }
 
-  /* chevron rotate */
-  .dropdown-icon {
-    transition: transform 300ms cubic-bezier(.4,0,.2,1);
-    transform-origin: center;
-  }
+.search-box {
+  position: relative;
+  width: 30rem;
+}
+.search-box input {
+  padding-right: 40px;
+}
+.search-box .search-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #198754;
+}
 
-  /* menu (transform-based reveal) */
-  .dropdown-menu {
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    width: max-content;
-    min-width: 160px;
-    padding: 8px;
-    margin: 0;
-    list-style: none;
-    background: #fff;
-    border: 1px solid #e6e6e6;
-    border-radius: 8px;
-    transform-origin: top center;
-    transform: scaleY(0);
+.meetup-carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 2rem auto;
+}
+
+.meetup-carousel {
+  overflow: hidden;
+  width: 100%;
+}
+
+.meetup-track {
+  display: flex;
+  gap: 1rem;
+  transition: transform 0.6s ease-in-out;
+}
+
+.meetup-card {
+  flex: 0 0 calc(33.333% - 1rem);
+  position: relative;
+  height: 350px;
+  border-radius: 1rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.meetup-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.28);
+}
+
+.meetup-overlay {
+  position: absolute;
+  inset: 0;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 1rem;
+  color: #fff;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.6), rgba(0,0,0,0));
+  transition: backdrop-filter 0.3s ease;
+}
+.meetup-card:hover .meetup-overlay {
+  backdrop-filter: blur(4px);
+}
+
+.meetup-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #c4b5fd;
+}
+
+.meetup-title {
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.meetup-date {
+  font-size: 1rem;
+  color: #cbd5e1;
+  margin-bottom: 0.75rem;
+}
+
+.carousel-btn {
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  transition: background 0.3s ease, opacity 0.2s ease;
+}
+.carousel-btn:hover { background: #f0f0f0; }
+.carousel-btn.prev { position: absolute; left: -55px; }
+.carousel-btn.next { position: absolute; right: -55px; }
+.carousel-btn[style*="display: none"] { opacity: 0; pointer-events: none; }
+
+.dot-expand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background-color: rgb(229 229 229);
+  padding-left: 0.75rem;
+  padding-right: 1rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(.4,0,.2,1);
+  color: #111;
+  border: none;
+  font-size: 1rem;
+}
+.dot-expand-btn:hover {
+  background-color: #111;
+  color: #fff;
+  padding-left: 0.5rem;
+  padding-right: 1rem;
+}
+.dot-expand-btn span:first-child {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  background-color: #111;
+  border-radius: 9999px;
+  transition: background-color 0.3s;
+}
+.dot-expand-btn:hover span:first-child { background-color: #fff; }
+
+.dot-expand-btn span svg {
+  transform: translateX(-200%);
+  font-size: 0;
+  transition: all 0.3s;
+  color: #111;
+}
+.dot-expand-btn:hover span svg {
+  transform: translateX(0);
+  font-size: 1rem;
+  color: #fff;
+}
+
+.animated-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border: 0;
+  font-size: 16px;
+  background-color: rgb(0,132,255);
+  opacity: 1;
+  border-radius: 100px;
+  font-weight: 600;
+  color: #000;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.animated-button svg { position: absolute; width: 24px; z-index: 9; transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+.animated-button .arr-1 { right: 16px; }
+.animated-button .arr-2 { left: -25%; }
+.animated-button .circle {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px; height: 20px; border-radius: 50%;
+  background-color: rgb(0,132,255); opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23,1,0.32,1);
+}
+.animated-button .text { position: relative; z-index: 1; transform: translateX(-12px); transition: all 0.8s cubic-bezier(0.23,1,0.32,1); }
+
+.animated-button:hover {
+  color: #fff;
+  border-radius: 12px;
+}
+.animated-button:hover .arr-1 { right: -25%; }
+.animated-button:hover .arr-2 { left: 16px; }
+.animated-button:hover .text { transform: translateX(12px); }
+.animated-button:hover svg { fill: #212121; }
+.animated-button:hover .circle { width: 220px; height: 220px; opacity: 1; }
+.animated-button:active { transform: scale(0.95); }
+
+.object-fit-cover {
+  object-fit: cover;
+  height: 100%;
+}
+
+.crop-image {
+  border-radius: 15px;
+}
+
+.animated-button svg {
+  fill: #000;
+  transition: fill 260ms ease, transform 260ms ease;
+}
+
+.animated-button:hover svg {
+  fill: #fff;
+}
+
+.cssbuttons-io-button {
+  background: #a370f0;
+  color: white;
+  font-family: inherit;
+  padding: 0.35em;
+  padding-left: 1.2em;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 0.9em;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.6em -0.6em #714da6;
+  overflow: hidden;
+  position: relative;
+  height: 2.8em;
+  padding-right: 3.3em;
+  cursor: pointer;
+}
+
+.cssbuttons-io-button .icon {
+  background: white;
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 0.7em;
+  box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
+  right: 0.3em;
+  transition: all 0.3s;
+}
+
+.cssbuttons-io-button:hover .icon {
+  width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button .icon svg {
+  width: 1.1em;
+  transition: transform 0.3s;
+  color: #7b52b9;
+}
+
+.cssbuttons-io-button:hover .icon svg {
+  transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+  transform: scale(0.95);
+}
+
+body {
+  background-color: #0b0b0b;
+  color: #e5e5e5;
+}
+
+.stagger-dropdown {
+  position: relative;
+  display: inline-block;
+  margin: 1rem;
+}
+.stagger-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #111;
+  color: #ffd700;
+  border: 1px solid #333;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.18s ease;
+}
+.stagger-btn:hover {
+  background: #eab308;
+  color: #000;
+}
+.stagger-icon {
+  transition: transform 300ms cubic-bezier(.4,0,.2,1);
+  transform-origin: center;
+}
+.stagger-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: max-content;
+  min-width: 160px;
+  padding: 8px;
+  margin: 0;
+  list-style: none;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  transform-origin: top center;
+  transform: scaleY(0);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 300ms cubic-bezier(.2,.8,.2,1), opacity 220ms ease;
+  box-shadow: 0 8px 30px rgba(255,215,0,0.15);
+  z-index: 100;
+  overflow: hidden;
+}
+.stagger-dropdown.open .stagger-menu {
+  transform: scaleY(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+.stagger-dropdown.open .stagger-icon {
+  transform: rotate(180deg);
+}
+.stagger-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #f5f5f5;
+  border-radius: 6px;
+  transform: translateY(-8px);
+  opacity: 0;
+  transition: transform 320ms cubic-bezier(.2,.8,.2,1), opacity 320ms ease, background-color 160ms;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.stagger-item:hover {
+  background: #333;
+  color: #ffd700;
+}
+.stagger-dropdown.open .stagger-item:nth-child(1) { transition-delay: 60ms; transform: translateY(0); opacity: 1; }
+.stagger-dropdown.open .stagger-item:nth-child(2) { transition-delay: 120ms; transform: translateY(0); opacity: 1; }
+.stagger-dropdown.open .stagger-item:nth-child(3) { transition-delay: 180ms; transform: translateY(0); opacity: 1; }
+
+.search-box {
+  position: relative;
+  width: 30rem;
+}
+.search-box input {
+  background-color: #111;
+  border: 1px solid #333;
+  color: #f5f5f5;
+  padding-right: 40px;
+}
+.search-box input::placeholder {
+  color: #888;
+}
+.search-box .search-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #60a5fa;
+}
+
+.meetup-carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 2rem auto;
+}
+.meetup-carousel {
+  overflow: hidden;
+  width: 100%;
+}
+.meetup-track {
+  display: flex;
+  gap: 1rem;
+  transition: transform 0.6s ease-in-out;
+}
+.meetup-card {
+  flex: 0 0 calc(33.333% - 1rem);
+  position: relative;
+  height: 350px;
+  border-radius: 1rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255,215,0,0.2);
+}
+.meetup-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 24px rgba(255,215,0,0.4);
+}
+.meetup-overlay {
+  position: absolute;
+  inset: 0;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 1rem;
+  color: #fff;
+  background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.6), rgba(0,0,0,0));
+  transition: backdrop-filter 0.3s ease;
+}
+.meetup-card:hover .meetup-overlay {
+  backdrop-filter: blur(4px);
+}
+.meetup-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #eab308;
+}
+.meetup-title {
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+.meetup-date {
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 0.75rem;
+}
+
+.carousel-btn {
+  background: #111;
+  color: #ffd700;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  box-shadow: 0 2px 10px rgba(255,215,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  transition: background 0.3s ease, opacity 0.2s ease;
+}
+.carousel-btn:hover {
+  background: #eab308;
+  color: #000;
+}
+.carousel-btn.prev { position: absolute; left: -55px; }
+.carousel-btn.next { position: absolute; right: -55px; }
+
+.dot-expand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background-color: #111;
+  padding-left: 0.75rem;
+  padding-right: 1rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(.4,0,.2,1);
+  color: #ffd700;
+  border: 1px solid #333;
+  font-size: 1rem;
+}
+.dot-expand-btn:hover {
+  background-color: #eab308;
+  color: #000;
+}
+.dot-expand-btn span:first-child {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  background-color: #ffd700;
+  border-radius: 9999px;
+  transition: background-color 0.3s;
+}
+.dot-expand-btn:hover span:first-child {
+  background-color: #000;
+}
+.dot-expand-btn span svg {
+  transform: translateX(-200%);
+  font-size: 0;
+  transition: all 0.3s;
+  color: #000;
+}
+.dot-expand-btn:hover span svg {
+  transform: translateX(0);
+  font-size: 1rem;
+  color: #ffd700;
+}
+
+.animated-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border: 0;
+  font-size: 16px;
+  background-color: #111;
+  color: #ffd700;
+  border-radius: 100px;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23,1,0.32,1);
+}
+.animated-button svg { position: absolute; width: 24px; z-index: 9; transition: all 0.6s cubic-bezier(0.23,1,0.32,1); fill: #ffd700; }
+.animated-button .arr-1 { right: 16px; }
+.animated-button .arr-2 { left: -25%; }
+.animated-button .circle {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px; height: 20px; border-radius: 50%;
+  background-color: #ffd700; opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23,1,0.32,1);
+}
+.animated-button .text { position: relative; z-index: 1; transform: translateX(-12px); transition: all 0.8s cubic-bezier(0.23,1,0.32,1); }
+.animated-button:hover {
+  background-color: #eab308;
+  color: #000;
+  border-radius: 12px;
+}
+.animated-button:hover .arr-1 { right: -25%; }
+.animated-button:hover .arr-2 { left: 16px; }
+.animated-button:hover .text { transform: translateX(12px); }
+.animated-button:hover .circle { width: 220px; height: 220px; opacity: 1; }
+.animated-button:active { transform: scale(0.95); }
+
+.object-fit-cover { object-fit: cover; height: 100%; }
+.crop-image { border-radius: 15px; }
+/* ==== Golden Shimmer Border Card === */
+.shimmer-border-card {
+  position: relative;
+  border-radius: 15px;
+  padding: 3px; /* border thickness */
+  background: linear-gradient(
+    90deg,
+    #b8860b,
+    #ffd700,
+    #fff8dc,
+    #ffd700,
+    #b8860b
+  );
+  background-size: 400%;
+  animation: shimmer 5s linear infinite;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.shimmer-border-inner {
+  background: #0f0f0f;
+  border-radius: 12px;
+  padding: 2rem;
+  height: 100%;
+  width: 100%;
+  color: #f5f5f5;
+  text-align: left;
+  line-height: 1.6;
+  transition: background 0.4s ease;
+}
+
+.shimmer-border-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.35);
+}
+
+.shimmer-border-card:hover .shimmer-border-inner {
+  background: #1a1a1a;
+}
+
+/* Shimmer motion */
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Soft glowing aura around border */
+.shimmer-border-card::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 18px;
+  background: inherit;
+  filter: blur(15px);
+  z-index: -1;
+  opacity: 0.7;
+}
+
+/* Equal height fix for Bootstrap columns */
+.row.align-items-stretch > [class*="col-"] {
+  display: flex;
+  align-items: stretch;
+}
+
+/* === Page Fade-In Animation on Load === */
+body {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+body.page-loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === Optional Page Fade-Out Before Leaving === */
+.page-transition {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+}
+
+/* === Optional overlay glow effect (gold shimmer flash) === */
+.page-loader-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255, 215, 0, 0.15), transparent 70%);
+  pointer-events: none;
+  opacity: 0;
+  animation: glowIn 1s ease-out;
+}
+
+@keyframes glowIn {
+  0% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+  100% {
     opacity: 0;
-    pointer-events: none;
-    transition: transform 300ms cubic-bezier(.2,.8,.2,1), opacity 220ms ease;
-    box-shadow: 0 8px 30px rgba(2,6,23,0.12);
-    z-index: 100;
-    overflow: hidden;
+    transform: scale(1);
   }
+}
 
-  /* open state */
-  .dropdown-container.open .dropdown-menu {
-    transform: scaleY(1);
-    opacity: 1;
-    pointer-events: auto;
-  }
-  .dropdown-container.open .dropdown-icon {
-    transform: rotate(180deg);
-  }
-
-  /* items start slightly up and fade in; will be staggered via nth-child when .open */
-  .dropdown-item {
-    padding: 8px 12px;
-    cursor: pointer;
-    font-size: 14px;
-    color: #374151;
-    border-radius: 6px;
-    transform: translateY(-8px);
-    opacity: 0;
-    transition: transform 320ms cubic-bezier(.2,.8,.2,1), opacity 320ms ease, background-color 160ms;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .dropdown-item:hover {
-    background: #eef2ff;
-    color: #4f46e5;
-  }
-
-  /* stagger delays (adjust counts/delays if you add more items) */
-  .dropdown-container.open .dropdown-item:nth-child(1) { transition-delay: 60ms; transform: translateY(0); opacity: 1; }
-  .dropdown-container.open .dropdown-item:nth-child(2) { transition-delay: 120ms; transform: translateY(0); opacity: 1; }
-  .dropdown-container.open .dropdown-item:nth-child(3) { transition-delay: 180ms; transform: translateY(0); opacity: 1; }
-  .dropdown-container.open .dropdown-item:nth-child(4) { transition-delay: 240ms; transform: translateY(0); opacity: 1; }
-  .dropdown-container.open .dropdown-item:nth-child(5) { transition-delay: 300ms; transform: translateY(0); opacity: 1; }
-
-  /* focus outline for accessibility */
-  .dropdown-item:focus {
-    outline: 2px solid rgba(79,70,229,0.28);
-    outline-offset: 2px;
-  }
-
-  /* =========================
-    Search box (header)
-    ========================= */
-  .search-box {
-    position: relative;
-    width: 30rem;
-  }
-  .search-box input {
-    padding-right: 40px; /* room for icon */
-  }
-  .search-box .search-icon {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #198754;
-  }
-
-  /* =========================
-    Meetup cards & carousel
-    ========================= */
-  .meetup-carousel-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 1100px;
-    margin: 2rem auto;
-  }
-
-  .meetup-carousel {
-    overflow: hidden;
-    width: 100%;
-  }
-
-  .meetup-track {
-    display: flex;
-    gap: 1rem;
-    transition: transform 0.6s ease-in-out;
-  }
-
-  /* card */
+/* ===== Responsive Styles ===== */
+@media (max-width: 1200px) {
   .meetup-card {
-    flex: 0 0 calc(33.333% - 1rem); /* 3 visible */
-    position: relative;
-    height: 350px;
-    border-radius: 1rem;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    flex: 0 0 calc(50% - 1rem); /* 2 cards per row */
   }
-  .meetup-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.28);
+}
+
+@media (max-width: 768px) {
+  body.container {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
-  /* overlay content inside card */
+  .meetup-card {
+    flex: 0 0 100%; /* 1 card per row */
+    height: auto;
+  }
+
   .meetup-overlay {
-    position: absolute;
-    inset: 0;
-    padding: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    border-radius: 1rem;
-    color: #fff;
-    background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.6), rgba(0,0,0,0));
-    transition: backdrop-filter 0.3s ease;
-  }
-  .meetup-card:hover .meetup-overlay {
-    backdrop-filter: blur(4px);
-  }
-
-  .meetup-tag {
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: #c4b5fd;
+    padding: 1rem;
   }
 
   .meetup-title {
-    margin: 0.5rem 0;
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 1.25rem;
   }
 
   .meetup-date {
-    font-size: 1rem;
-    color: #cbd5e1;
-    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
   }
 
-  /* carousel nav buttons */
-  .carousel-btn {
-    background: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 5;
-    transition: background 0.3s ease, opacity 0.2s ease;
-  }
-  .carousel-btn:hover { background: #f0f0f0; }
-  .carousel-btn.prev { position: absolute; left: -55px; }
-  .carousel-btn.next { position: absolute; right: -55px; }
-  .carousel-btn[style*="display: none"] { opacity: 0; pointer-events: none; }
-
-  /* =========================
-    Dot-expand small button (card CTA)
-    ========================= */
-  .dot-expand-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    height: 2.5rem;
-    border-radius: 9999px;
-    background-color: rgb(229 229 229);
-    padding-left: 0.75rem;
-    padding-right: 1rem;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(.4,0,.2,1);
-    color: #111;
-    border: none;
-    font-size: 1rem;
-  }
-  .dot-expand-btn:hover {
-    background-color: #111;
-    color: #fff;
-    padding-left: 0.5rem;
-    padding-right: 1rem;
-  }
-  .dot-expand-btn span:first-child {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.25rem;
-    background-color: #111;
-    border-radius: 9999px;
-    transition: background-color 0.3s;
-  }
-  .dot-expand-btn:hover span:first-child { background-color: #fff; }
-
-  /* small icon slide in inside dot-expand */
-  .dot-expand-btn span svg {
-    transform: translateX(-200%);
-    font-size: 0;
-    transition: all 0.3s;
-    color: #111;
-  }
-  .dot-expand-btn:hover span svg {
-    transform: translateX(0);
-    font-size: 1rem;
-    color: #fff;
+  .search-box {
+    width: 100%;
+    max-width: none;
   }
 
-  /* =========================
-    Animated header buttons
-    (used in your HTML as .animated-button)
-    ========================= */
-  .animated-button {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 28px;
-    border: 0;
-    font-size: 16px;
-    background-color: rgb(0,132,255); opacity: 1;
-    border-radius: 100px;
-    font-weight: 600;
-    color: #000;
-    cursor: pointer;
-    overflow: hidden;
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-  }
-  .animated-button svg { position: absolute; width: 24px;z-index: 9; transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
-  .animated-button .arr-1 { right: 16px; }
-  .animated-button .arr-2 { left: -25%; }
-  .animated-button .circle {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 20px; height: 20px; border-radius: 50%;
-    background-color: rgb(0,132,255); opacity: 0;
-    transition: all 0.8s cubic-bezier(0.23,1,0.32,1);
-  }
-  .animated-button .text { position: relative; z-index: 1; transform: translateX(-12px); transition: all 0.8s cubic-bezier(0.23,1,0.32,1); }
-
-  .animated-button:hover {
-    color: #fff;
-    border-radius: 12px;
-  }
-  .animated-button:hover .arr-1 { right: -25%; }
-  .animated-button:hover .arr-2 { left: 16px; }
-  .animated-button:hover .text { transform: translateX(12px); }
-  .animated-button:hover svg { fill: #212121; }
-  .animated-button:hover .circle { width: 220px; height: 220px; opacity: 1; }
-  .animated-button:active { transform: scale(0.95); }
-
-  /* =========================
-    Utilities used in markup
-    ========================= */
-  .object-fit-cover {
-    object-fit: cover;
-    height: 100%;
-  }
-
-  .crop-image {
-    border-radius: 15px;
-  }
-
-  /* Staggered dropdown (no bootstrap collision) */
-  .stagger-dropdown {
-    position: relative;
-    display: inline-block;
-    margin: 1rem;
-  }
-
-  /* Button */
   .stagger-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: #0d6efd;
-    color: #fff;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 6px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background 0.25s ease, transform 0.18s ease;
-  }
-  .stagger-btn:hover { background: #4f46e5; }
-
-  /* chevron rotate */
-  .stagger-icon {
-    transition: transform 300ms cubic-bezier(.4,0,.2,1);
-    transform-origin: center;
-  }
-
-  /* menu (transform-based reveal) */
-  .stagger-menu {
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    width: max-content;
-    min-width: 160px;
-    padding: 8px;
-    margin: 0;
-    list-style: none;
-    background: #fff;
-    border: 1px solid #e6e6e6;
-    border-radius: 8px;
-    transform-origin: top center;
-    transform: scaleY(0);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 300ms cubic-bezier(.2,.8,.2,1), opacity 220ms ease;
-    box-shadow: 0 8px 30px rgba(2,6,23,0.12);
-    z-index: 100;
-    overflow: hidden;
-  }
-
-  /* open state */
-  .stagger-dropdown.open .stagger-menu {
-    transform: scaleY(1);
-    opacity: 1;
-    pointer-events: auto;
-  }
-  .stagger-dropdown.open .stagger-icon {
-    transform: rotate(180deg);
-  }
-
-  /* items start slightly up and fade in; will be staggered via nth-child when .open */
-  .stagger-item {
+    font-size: 13px;
     padding: 8px 12px;
-    cursor: pointer;
+  }
+
+  .carousel-btn.prev, .carousel-btn.next {
+    left: 10px;
+    right: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .animated-button {
     font-size: 14px;
-    color: #374151;
-    border-radius: 6px;
-    transform: translateY(-8px);
-    opacity: 0;
-    transition: transform 320ms cubic-bezier(.2,.8,.2,1), opacity 320ms ease, background-color 160ms;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .stagger-item:hover {
-    background: #eef2ff;
-    color: #4f46e5;
+    padding: 10px 20px;
   }
 
-  /* stagger delays for visual cascade (tweak timings if needed) */
-  .stagger-dropdown.open .stagger-item:nth-child(1) { transition-delay: 60ms; transform: translateY(0); opacity: 1; }
-  .stagger-dropdown.open .stagger-item:nth-child(2) { transition-delay: 120ms; transform: translateY(0); opacity: 1; }
-  .stagger-dropdown.open .stagger-item:nth-child(3) { transition-delay: 180ms; transform: translateY(0); opacity: 1; }
-
-  /* keyboard focus */
-  .stagger-item:focus {
-    outline: 2px solid rgba(79,70,229,0.28);
-    outline-offset: 2px;
+  .animated-button .text {
+    transform: translateX(0);
   }
 
-
-  /* ensure SVG arrows are black by default and smoothly transition on hover */
-  .animated-button svg {
-    fill: #000;                 /* default arrow color (black) */
-    transition: fill 260ms ease, transform 260ms ease;
-    /* if your SVG uses stroke instead of fill, uncomment the next line:
-      stroke: #000; */
+  .meetup-tag {
+    font-size: 0.7rem;
   }
 
-  /* on hover make arrows white */
-  .animated-button:hover svg {
-    fill: #fff;                 /* arrow becomes white on hover */
-    /* if using stroke, uncomment:
-      stroke: #fff; */
+  .dot-expand-btn {
+    font-size: 0.9rem;
+    padding-left: 0.5rem;
+    padding-right: 0.75rem;
   }
 
-  /* From Uiverse.io by adamgiebl */ 
-  .cssbuttons-io-button {
-    background: #a370f0;
-    color: white;
-    font-family: inherit;
-    padding: 0.35em;
-    padding-left: 1.2em;
-    font-size: 17px;
-    font-weight: 500;
-    border-radius: 0.9em;
-    border: none;
-    letter-spacing: 0.05em;
-    display: flex;
-    align-items: center;
-    box-shadow: inset 0 0 1.6em -0.6em #714da6;
-    overflow: hidden;
-    position: relative;
-    height: 2.8em;
-    padding-right: 3.3em;
-    cursor: pointer;
+  .shimmer-border-inner {
+    padding: 1.5rem;
   }
 
-  .cssbuttons-io-button .icon {
-    background: white;
-    margin-left: 1em;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 2.2em;
-    width: 2.2em;
-    border-radius: 0.7em;
-    box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
-    right: 0.3em;
-    transition: all 0.3s;
+  .main-container {
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px;
   }
 
-  .cssbuttons-io-button:hover .icon {
-    width: calc(100% - 0.6em);
+  .register-btn {
+    font-size: 0.95rem;
+    padding: 10px;
   }
-
-  .cssbuttons-io-button .icon svg {
-    width: 1.1em;
-    transition: transform 0.3s;
-    color: #7b52b9;
-  }
-
-  .cssbuttons-io-button:hover .icon svg {
-    transform: translateX(0.1em);
-  }
-
-  .cssbuttons-io-button:active .icon {
-    transform: scale(0.95);
-  }
+}
 

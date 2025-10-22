@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      background-color: rgb(255, 255, 255);
+      color: #f5f5f5;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+      padding: 20px;
+    }
+
+    body.page-loaded {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffd700;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: 0.5px;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    /* === Shimmer Card Border === */
+    .form-card {
+      position: relative;
+      border-radius: 15px;
+      padding: 3px;
+      background: linear-gradient(90deg, #b8860b, #ffd700, #fff8dc, #ffd700, #b8860b);
+      background-size: 400%;
+      animation: shimmer 5s linear infinite;
+      overflow: hidden;
+      flex: 1;
+      max-width: 450px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+    }
+
+    .form-inner {
+      background: #111;
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* === Form Elements === */
+    .form-label {
+      color: #ffd700;
+      font-weight: 500;
+    }
+
+    .form-control,
+    .form-select,
+    textarea {
+      background-color: #0f0f0f;
+      border: 1px solid #333;
+      color: #ffd700;
+      border-radius: 8px;
+      padding: 10px;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    textarea {
+      resize: none;
+      height: 100px;
+    }
+
+    .form-control:focus,
+    .form-select:focus,
+    textarea:focus {
+      border-color: #ffd700;
+      box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #ffd700, #b8860b);
+      color: #000;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #fff8dc, #ffd700);
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    }
+
+    /* === Image Card === */
+    .image-card {
+      border-radius: 15px;
+      overflow: hidden;
+      flex: 1;
+      max-width: 450px;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      transition: transform 0.5s ease;
+    }
+
+    .image-card img:hover {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 992px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .form-card,
+      .image-card {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Left: Form Card -->
+    <div class="form-card">
+      <div class="form-inner">
+        <h1>Register Here</h1>
+
+        <form onsubmit="senEmail(); return false;">
+          <label for="email" class="form-label">YOUR EMAIL ID :</label>
+          <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+
+          <label for="name" class="form-label">YOUR NAME :</label>
+          <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+
+          <label for="department" class="form-label">SELECT YOUR DEPARTMENT :</label>
+          <select class="form-select" id="department" required>
+            <option value="">Select Department</option>
+            <option value="CSE">CSE</option>
+            <option value="IT">IT</option>
+            <option value="EEE">EEE</option>
+            <option value="CSBS">CSBS</option>
+            <option value="MECH">MECH</option>
+            <option value="AIDS">AIDS</option>
+            <option value="AIML">AIML</option>
+          </select>
+
+          <label for="year" class="form-label">SELECT YOUR YEAR :</label>
+          <select class="form-select" id="year" required>
+            <option value="">Select Year</option>
+            <option value="1ST YEAR">1ST YEAR</option>
+            <option value="2ND YEAR">2ND YEAR</option>
+            <option value="3RD YEAR">3RD YEAR</option>
+            <option value="4TH YEAR">4TH YEAR</option>
+          </select>
+
+          <label for="message" class="form-label">MESSAGE :</label>
+          <textarea id="message" placeholder="Enter your message..."></textarea>
+
+          <button type="submit">Register</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Right: Random Image Card -->
+    <div class="image-card">
+      <img id="randomImage" src="" alt="Random Placeholder" />
+    </div>
+  </div>
+
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script>
+    // Fade-in animation
+    window.addEventListener('load', () => {
+      document.body.classList.add('page-loaded');
+      const img = document.getElementById('randomImage');
+      const randomNum = Math.floor(Math.random() * 1000);
+      img.src = `https://picsum.photos/600/600?random=${randomNum}`;
+    });
+
+    // Email sending logic
+    function senEmail() {
+      Email.send({
+        Host: "smtp.gmail.com",
+        Username: "rahul.810.n@gmail.com",
+        Password: "F6A50F3E1ED8A747DD5F7705F10699E49E71",
+        To: "rahul.810.n@gmail.com",
+        From: document.getElementById("email").value,
+        Subject: "New Registration",
+        Body:
+          "Name: " + document.getElementById("name").value +
+          "<br>Email: " + document.getElementById("email").value +
+          "<br>Department: " + document.getElementById("department").value +
+          "<br>Year: " + document.getElementById("year").value +
+          "<br>Message: " + document.getElementById("message").value
+      }).then(
+        message => alert("Message Sent Successfully!")
+      );
+    }
+  </script>
+</body>
+</html>
